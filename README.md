@@ -1,7 +1,7 @@
 
-<h1 align="center">Twitter clone</h3>
+<h1 align="center">TweetSphere</h3>
 <p align="center">
-Build a fully functional Twitter clone with using a <b>Next.js 14</b> with <b>TypeScript</b>, <b>Sass</b>, <b>TailwindCSS</b>, <b>Framer-motion</b>, <b>Tanstack Query</b>, <b>MongoDB</b>, <b>Supabase</b>, <b>Prisma</b>, <b>NextAuth</b> and <b>Zustand.</b> It showcases advanced frontend and backend capabilities.
+Developed a full stack application imitating the popular social media app - X (formerly Twitter) using a <b>Next.js 14</b> with <b>TypeScript</b>, <b>Sass</b>, <b>TailwindCSS</b>, <b>Framer-motion</b>, <b>Tanstack Query</b>, <b>MongoDB</b>, <b>Supabase</b>, <b>Prisma</b>, <b>NextAuth</b> and <b>Zustand.</b> It showcases advanced frontend and backend capabilities.
 </p>
 
 <img width="1527" alt="twitter-clone-preview" src="https://tsedxkflgndtkvrmgbug.supabase.co/storage/v1/object/public/images/project_preview.png?t=2024-07-23T09%3A05%3A46.142Z">
@@ -46,8 +46,8 @@ https://x.com/imDignesh/status/1784166713694773756
 ## 🛠️ Installation 
 
 ```bash
-git clone https://github.com/devdignesh/twitter-clone.git
-cd twitter-clone
+git clone https://github.com/devdignesh/tweetsphere.git
+cd tweetsphere
 npm i
 npm run dev
 ```
@@ -77,7 +77,7 @@ npx prisma generate
 
 - The project uses MongoDB, and the connection is defined in the `.env` file. Make sure your `.env` includes the correct MongoDB connection string
 ``` bash
-DATABASE_URL="mongodb+srv://username:password@xxx.xxx.mongodb.net/twitter_clone"
+DATABASE_URL="mongodb+srv://username:password@xxx.xxx.mongodb.net/tweetsphere"
 ```
 
 #### 4. Run Prisma Commands
@@ -127,7 +127,7 @@ This project includes Docker support for easier development and deployment.
 ### Usage
 1. Clone the repository:
 ```bash
-git clone https://github.com/devdignesh/twitter-clone.git
+git clone https://github.com/devdignesh/tweetsphere.git
 cd twitter-clone
 ```
 
