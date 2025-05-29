@@ -77,7 +77,7 @@ npx prisma generate
 
 - The project uses MongoDB, and the connection is defined in the `.env` file. Make sure your `.env` includes the correct MongoDB connection string
 ``` bash
-DATABASE_URL="mongodb+srv://username:password@xxx.xxx.mongodb.net/tweetsphere"
+DATABASE_URL="mongodb+srv://<your-username>:<your-password>@<cluster>.mongodb.net/tweetsphere"
 ```
 
 #### 4. Run Prisma Commands
