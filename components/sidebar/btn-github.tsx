@@ -15,7 +15,7 @@ const GithubButton = () => {
         <span className="flex items-center justify-center xxl:hidden h-6 w-6 fill-slate-100 ">
           <FaGithub size={20} />
         </span>
-        <div className="hidden  xxl:inline ">
+        <div className="hidden xxl:inline ">
           <span className="text-base flex justify-center items-center gap-3 font-semibold dark:text-white text-black">
             <span className="flex justify-center items-center gap-2">
               <FaGithub size={20} />

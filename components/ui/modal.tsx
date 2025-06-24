@@ -6,14 +6,8 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "./button";
-import { Label } from "./label";
-import { Input } from "./input";
 import { cn } from "@/lib/utils";
-import { X } from "lucide-react";
-import { motion } from "framer-motion";
 
 interface ModalProps {
   isOpen?: boolean;
@@ -37,28 +31,27 @@ const Modal = ({
   isEditing,
 }: ModalProps) => {
   return (
-     
-      <Dialog open={isOpen} onOpenChange={onClose}>
-        <DialogContent
-          className={cn(
-            "sm:max-w-[425px] rounded-md",
-            isEditing && "h-[80vh] overflow-x-hidden overflow-y-auto"
+    <Dialog open={isOpen} onOpenChange={onClose}>
+      <DialogContent
+        className={cn(
+          "sm:max-w-[425px] rounded-md",
+          isEditing && "h-[80vh] overflow-x-hidden overflow-y-auto"
+        )}
+      >
+        <DialogHeader>
+          <DialogTitle>{title}</DialogTitle>
+        </DialogHeader>
+        <div className="flex items-center gap-6">
+          {step && totalSteps && (
+            <div className="">
+              Step {step} of {totalSteps}
+            </div>
           )}
-        >
-          <DialogHeader>
-            <DialogTitle>{title}</DialogTitle>
-          </DialogHeader>
-          <div className="flex items-center gap-6">
-            {step && totalSteps && (
-              <div className="">
-                Step {step} of {totalSteps}
-              </div>
-            )}
-          </div>
-          <div className="">{body}</div>
-          <DialogFooter className="text-sm">{footer}</DialogFooter>
-        </DialogContent>
-      </Dialog> 
+        </div>
+        <div className="">{body}</div>
+        <DialogFooter className="text-sm">{footer}</DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 };
 

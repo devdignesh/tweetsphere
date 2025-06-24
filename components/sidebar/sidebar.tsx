@@ -21,13 +21,12 @@ function Sidebar() {
         <GithubButton />
       </div>
 
-
       {session && (
         <div className="xxl:justify-start  flex justify-center">
           <TweetButton />
         </div>
       )}
-     
+
       {session && (
         <div className="xxl:justify-start  mt-auto flex">
           <SessionUserButton />

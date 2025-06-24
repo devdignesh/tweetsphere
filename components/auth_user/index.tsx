@@ -145,7 +145,7 @@ const Auth = () => {
                     data-email={process.env.NEXT_PUBLIC_DEMO_USER_ALEX_EMAIL}
                     onClick={handleButtonClick}
                   >
-                   <IoPersonSharp size={22}/>
+                    <IoPersonSharp size={22} />
                   </Button>
                   <span className="text-sm">Alex Smith</span>
                 </div>
@@ -156,7 +156,7 @@ const Auth = () => {
                     data-email={process.env.NEXT_PUBLIC_DEMO_USER_TAYLOR_EMAIL}
                     onClick={handleButtonClick}
                   >
-                     <IoPersonSharp size={22}/>
+                    <IoPersonSharp size={22} />
                   </Button>
                   <span className="text-sm">Taylor Johnson</span>
                 </div>
@@ -167,7 +167,7 @@ const Auth = () => {
                     data-email={process.env.NEXT_PUBLIC_DEMO_USER_MORGAN_EMAIL}
                     onClick={handleButtonClick}
                   >
-                    <IoPersonSharp size={22}/>
+                    <IoPersonSharp size={22} />
                   </Button>
                   <span className="text-sm">Morgan Brown</span>
                 </div>

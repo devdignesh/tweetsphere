@@ -45,7 +45,6 @@ const LoginModal = () => {
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     try {
- 
       const { data } = await axios.post("/api/auth/login", values);
 
       if (data.success) {
@@ -122,15 +121,13 @@ const LoginModal = () => {
 
   return (
     <>
-     
-        <Modal
-          title="Login"
-          isOpen={loginModal.isOpen}
-          onClose={loginModal.onClose}
-          body={bodyContent}
-          footer={footerContent}
-        />
-       
+      <Modal
+        title="Login"
+        isOpen={loginModal.isOpen}
+        onClose={loginModal.onClose}
+        body={bodyContent}
+        footer={footerContent}
+      />
     </>
   );
 };
