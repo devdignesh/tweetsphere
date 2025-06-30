@@ -19,12 +19,14 @@ import EmojiButton from "./emoji-button";
 import { useUser } from "../profile/hooks/use-user";
 
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 interface Props {
   placeholder?: string | null;
   in_reply_to_screen_name?: string | null;
   in_reply_to_tweet_id?: string | null;
   inputId?: string;
+  showBorder?: boolean;
 }
 
 const CreateTweet = ({
@@ -32,6 +34,7 @@ const CreateTweet = ({
   in_reply_to_screen_name,
   in_reply_to_tweet_id,
   inputId = "tweet-text",
+  showBorder = true,
 }: Props) => {
   const { data: session }: any = useSession();
   const { data: user } = useUser({ id: session?.currentUser?.id });
@@ -61,7 +64,12 @@ const CreateTweet = ({
   if (!session) return null;
 
   return (
-    <div className="h-full flex overflow-auto border-b py-3 px-4 gap-3">
+    <div
+      className={cn(
+        "h-full flex overflow-auto py-3 px-4 gap-3",
+        showBorder && "border-b"
+      )}
+    >
       <Avatar className="bg-center bg-cover h-9 w-9 ">
         <AvatarImage
           src={user?.profileImage || `/images/user_placeholder.png`}

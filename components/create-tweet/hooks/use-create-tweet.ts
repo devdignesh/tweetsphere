@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PostTweet } from "../api/post-tweet";
 import { IChosenImages } from "../type/inde";
+import useCreateTweetStore from "@/components/sidebar/store/useCreateTweetStore";
 
 export const useCreateTweet = ({
   setText,
@@ -10,6 +11,7 @@ export const useCreateTweet = ({
   setChosenImages: (chosenImages: IChosenImages[]) => void;
 }) => {
   const queryClient = useQueryClient();
+  const createTweetDialog = useCreateTweetStore();
 
   return useMutation({
     mutationFn: ({
@@ -37,6 +39,7 @@ export const useCreateTweet = ({
       queryClient.invalidateQueries({ queryKey: ["tweets"] });
       queryClient.invalidateQueries({ queryKey: ["hashtags"] });
       queryClient.invalidateQueries({ queryKey: ["hashtags-dialog"] });
+      createTweetDialog.onClose();
     },
     onError: (error) => {
       console.log("error", error);
