@@ -1,152 +1,151 @@
 
-<h1 align="center">Twitter clone</h3>
+<h1 align="center">Tweetsphere</h3>
 <p align="center">
-This project is a fully functional Twitter clone built using A Next.js 14 with SASS, TailwindCSS, Framer-motion, TypeScript, Tanstack Query, MongoDB, Supabase, Prisma, NextAuth and Zustand. It showcases advanced frontend and backend capabilities.
+This project is a fully functional X (formerly Twitter) clone built with modern technologies like Next.js 14, TypeScript, TailwindCSS, Framer Motion, MongoDB, Supabase, and more. The project showcases advanced fullstack capabilities and follows scalable architecture patterns.
 </p>
 
 <img width="1527" alt="twitter-clone-preview" src="https://tsedxkflgndtkvrmgbug.supabase.co/storage/v1/object/public/images/project_preview.png?t=2024-07-23T09%3A05%3A46.142Z">
 
 
-## 📽 Demo video link 
-https://x.com/imDignesh/status/1784166713694773756
+## Live Demo
+[Watch demo video on X (Twitter)](https://x.com/imDignesh/status/1784166713694773756)
 
-## ✨ Features 
+##  Features 
 
-- Google / Github / Email (NextAuth) Authentication 
-- Edit profile with profile / banner images and other details
-- Create tweet with upto 4 images and support emojis
-- Follow / Unfollow user functionality
-- User can Likes / Comments / Replies / Bookmark tweet
-- User can see following list of other users
-- User can Delete / Pin own post 
-- User can see other user's following / followers list 
-- Search any tweet and user
+- Google / GitHub / Email authentication (NextAuth) 
+- Profile & banner image upload
+- Create tweets with up to 4 images & emojis
+- Like, Comment, Reply, Bookmark tweets
+- Follow / Unfollow users
+- Pin or Delete your own posts
+- Search tweets & users
 - Discover trending hashtags
-- Fully responsive
-- Change theme using shortcut `Alt + T`
+- Dark / Light theme toggle `Alt + T`
+- Fully responsive for all devices
 
-## Built with
+## Tech Stack
 
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Framer motion](https://motion.dev/)
 - [TanStack Query](https://tanstack.com/query/latest)
 - [NextAuth.js](https://next-auth.js.org/)
 - [Prisma](https://www.prisma.io/)
-- [Mongodb](https://www.mongodb.com/atlas/database)
-- [Supabase](https://supabase.com/docs)
+- [MongoDB Atlas](https://www.mongodb.com/atlas/database)
+- [Supabase (Storage)](https://supabase.com/docs)
 - [Upstash Redis](https://upstash.com/)
 - [Zustand](https://zustand.surge.sh/)
 - [zod](https://github.com/colinhacks/zod)
 - [SWR](https://swr.vercel.app/)
-- [Tailwind CSS](https://tailwindcss.com/)
 - [SCSS](https://sass-lang.com/)
 
-
-## 🛠️ Installation 
+## Getting Started
+### Installation 
 
 ```bash
-git clone https://github.com/devdignesh/twitter-clone.git
-cd twitter-clone
-npm i
+git clone https://github.com/devdignesh/tweetsphere.git
+cd tweetsphere
+npm install
 npm run dev
 ```
 
 ## Environment Variables
 
-Before running the development server, make sure to create `.env` file in the root directory of the project and add the required environment variables. You can use the example provided in the repository as a starting point.
+Copy the example file and add your secrets:
 
 ```bash
 cp .env.example .env
 ```
+### Required Variables:
+
+* MongoDB connection string
+* Supabase project keys
+* NextAuth configuration
+
 
 ## Prisma Setup (MongoDB)
 
-#### 1. After cloning the project, simply run:
+1. Install dependencies:
 ```bash
 npm install
 ```
 - This will automatically install <b>Prisma</b> and all the necessary dependencies
-#### 2. Generate Prisma Client
+2. Generate Prisma Client
 
 ```bash
 npx prisma generate
 ```
-#### 3. MongoDB Configuration
+3. MongoDB Configuration
 
-- The project uses MongoDB, and the connection is defined in the `.env` file. Make sure your `.env` includes the correct MongoDB connection string
 ``` bash
-DATABASE_URL="mongodb+srv://username:password@xxx.xxx.mongodb.net/twitter_clone"
+DATABASE_URL="mongodb+srv://username:pass@xxx.xxx.mongodb.net/twitter_clone"
 ```
 
-#### 4. Run Prisma Commands
+4. Push database schema:
 
 ```bash
 npx prisma db push
 ```
 
-#### 5. Done!
 
 ## Supabase Setup:
-#### 1. Create a Supabase Account
-
+1. Create a Supabase Account
 - Visit [Supabase](https://supabase.com/), sign up, and create a new project.
-#### 2. Get API Keys
+
+3. Get API Keys
 
 - After creating your project, go to the `API section` or `connect`.
 - Find `Project URL` and `API Key/anon key` for the following environment variables:
  ```bash
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_ANON_KEY
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
 ```
 - Copy these keys and add them to your .env file.
 
-#### 3. Create Public Storage Buckets
+3. Create three **public buckets**:
 
-- Navigate to Storage in the Supabase dashboard.
-- Create three public buckets: `images`, `banners`, and `avatars`.
-- Set their public access policies so that users can upload and fetch files. Refer to this [detailed guide](https://blog.stackademic.com/upload-file-using-next-js-and-supabase-ad0af2360677) if you need help with configuring storage policies.
+   * `images`
+   * `banners`
+   * `avatars`
 
-#### 4. Set Permissions for Buckets
+4. Ensure public read permissions for these buckets.<br/>
+   [Need help? Read this Supabase Storage guide.](https://blog.stackademic.com/upload-file-using-next-js-and-supabase-ad0af2360677)
 
-- In each bucket, set the policy under `Configuration` to make sure the files can be publicly read.
-
-
-#### 5. That's it!
+7. That's it!
 
 Once done, your Supabase setup is complete and your application will now be able to store and retrieve images.
 
-## Docker
-This project includes Docker support for easier development and deployment.
 
-### Prerequisites
+##  Docker Setup (Optional)
 
-- Docker installed on your machine.
+1. Pull the pre-built image:
 
-### Usage
-1. Clone the repository:
-```bash
-git clone https://github.com/devdignesh/twitter-clone.git
-cd twitter-clone
-```
+   ```bash
+   docker pull devdignesh/twitter_clone_nextjs:v1.1.0
+   ```
 
-2. Pull the latest Docker image:
-```bash
-docker pull devdignesh/twitter_clone_nextjs:v1.1.0
-```
+2. Run the container:
 
-3. Run the Docker container:
-```bash
-docker run -d -p 8000:3000 devdignesh/twitter_clone_nextjs:v1.1.0
-```
-4. Access the application in your browser
-```bash
+   ```bash
+   docker run -d -p 8000:3000 devdignesh/twitter_clone_nextjs:v1.1.0
+   ```
 
-http://localhost:8000
+3. Open in browser:
 
-```
+   ```
+   http://localhost:8000
+   ```
+
+
 
 ## Contributing
-Welcome to contribute to our repository! We value your input and appreciate any contributions you make
 
+We welcome contributions!
+Whether it's reporting bugs, suggesting features, improving documentation, or submitting PRs — all contributions are appreciated.
 
- 
+**To contribute:**
+
+1. Fork the repo
+2. Create a feature branch
+3. Submit a pull request
