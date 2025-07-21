@@ -15,13 +15,40 @@ export const useLike = () => {
       return toggleLike({ tweetId, userId });
     },
 
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["tweets"] });
+    onSuccess: (_, { tweetId, userId }) => {
+      queryClient.setQueryData(["tweets"], (old: any) => {
+        if (!old) return;
+        return {
+          ...old,
+          pages: old.pages.map((page: any) => ({
+            ...page,
+            tweets: page.tweets.map((tweet: any) => {
+              if (tweet.id !== tweetId) return tweet;
+
+              const hasLiked = tweet.likes.some(
+                (like: any) => like.userId === userId
+              );
+
+              return {
+                ...tweet,
+                likes: hasLiked
+                  ? tweet.likes.filter((like: any) => like.userId !== userId)
+                  : [...tweet.likes, { userId }],
+                _count: {
+                  ...tweet._count,
+                  likes: hasLiked
+                    ? tweet._count.likes - 1
+                    : tweet._count.likes + 1,
+                },
+              };
+            }),
+          })),
+        };
+      });
     },
-    
+
     onError: () => {
       console.log("error");
     },
-    
   });
 };

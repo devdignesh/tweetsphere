@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import prisma from "@/lib/prismadb"; 
+import prisma from "@/lib/prismadb";
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -31,69 +31,35 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const { tweet_id, user_id } = (await request.json()) as {
-    tweet_id: string;
-    user_id: string;
-  };
+  const { tweet_id, user_id } = await request.json();
 
   try {
-    const tweet = await prisma.post.findUnique({ where: { id: tweet_id } });
-
-    const like = await prisma.like.findFirst({
-      where: {
-        postId: tweet_id,
-        userId: user_id,
-      },
+    const existingLike = await prisma.like.findFirst({
+      where: { postId: tweet_id, userId: user_id },
     });
 
-    if (like) {
-      await prisma.like.delete({
-        where: {
-          id: like.id,
-        },
-      });
-
-      if (tweet && tweet.favorite_count > 0) {
-        await prisma.post.update({
-          where: {
-            id: tweet_id,
-          },
-          data: {
-            favorite_count: {
-              decrement: 1,
-            },
-          },
+    const result = await prisma.$transaction(async (tx) => {
+      if (existingLike) {
+        await tx.like.delete({ where: { id: existingLike.id } });
+        await tx.post.update({
+          where: { id: tweet_id },
+          data: { favorite_count: { decrement: 1 } },
         });
-      }
-
-      return NextResponse.json({ message: "Tweet unliked" });
-    } else {
-      await prisma.like.create({
-        data: {
-          postId: tweet_id,
-          userId: user_id,
-        },
-      });
-
-      if (tweet) {
-        await prisma.post.update({
-          where: {
-            id: tweet_id,
-          },
-          data: {
-            favorite_count: {
-              increment: 1,
-            },
-          },
+        return { message: "Tweet unliked" };
+      } else {
+        await tx.like.create({
+          data: { postId: tweet_id, userId: user_id },
         });
+        await tx.post.update({
+          where: { id: tweet_id },
+          data: { favorite_count: { increment: 1 } },
+        });
+        return { message: "Tweet liked" };
       }
+    });
 
-      return NextResponse.json({ message: "Tweet liked" });
-    }
+    return NextResponse.json(result);
   } catch (error: any) {
-    return NextResponse.json({
-      message: "Something went wrong",
-      error: error.message,
-    });
+    return NextResponse.json({ message: "Failed", error: error.message });
   }
 }
