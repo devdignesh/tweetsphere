@@ -14,7 +14,7 @@ export const toggleLike = async ({
     });
     return data;
   } catch (error: any) {
-    console.log('Error', error);
+    console.log("Error", error);
     return error.message;
   }
 };

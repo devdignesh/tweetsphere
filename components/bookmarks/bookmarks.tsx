@@ -28,8 +28,8 @@ const Bookmarks = () => {
     return <LoadingSpinner />;
   }
 
-  if(isError) {
-    return <TryAgain/>
+  if (isError) {
+    return <TryAgain />;
   }
 
   return (

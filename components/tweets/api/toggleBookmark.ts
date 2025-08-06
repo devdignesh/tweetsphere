@@ -6,11 +6,11 @@ export const toggleBookmark = async ({
 }: {
   tweetId: string;
   userId: string;
-}) => { 
+}) => {
   try {
     const { data } = await axios.post("/api/tweets/bookmarks", {
-      tweet_id : tweetId,
-      user_id : userId,
+      tweet_id: tweetId,
+      user_id: userId,
     });
     return data;
   } catch (error: any) {

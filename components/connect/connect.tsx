@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import { useUsers } from "../profile/hooks/use-users";
 import PersonDetails from "./person-details";
@@ -13,11 +13,11 @@ const Connect = () => {
   } = useUsers({ queryKey: ["people-to-follow"], limit: 20 });
 
   if (isLoading) {
-    return  <LoadingSpinner/>;
+    return <LoadingSpinner />;
   }
 
   if (isError) {
-    return <TryAgain/>;
+    return <TryAgain />;
   }
 
   return (

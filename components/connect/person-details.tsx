@@ -53,7 +53,7 @@ const PersonDetails = ({ author }: { author: IUser | null }) => {
                 ""
               ) : (
                 <FollowButton
-                  user_id={author?.id || ''}
+                  user_id={author?.id || ""}
                   session_owner_id={session?.currentUser?.id}
                   isFollowing={isFollowing}
                 />

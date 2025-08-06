@@ -17,7 +17,7 @@ const Connect = () => {
       {isLoading ? (
         <LoadingSpinner />
       ) : isError ? (
-       <TryAgain/>
+        <TryAgain />
       ) : (
         <>
           <h2 className="text-lg py-3 px-4 font-semibold">Who to follow</h2>

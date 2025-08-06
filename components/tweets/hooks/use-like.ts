@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toggleLike } from "../api/toggleLike";
+import { updateTweetCache } from "../actions/update-tweet-cache";
 
 export const useLike = () => {
   const queryClient = useQueryClient();
@@ -16,35 +17,8 @@ export const useLike = () => {
     },
 
     onSuccess: (_, { tweetId, userId }) => {
-      queryClient.setQueryData(["tweets"], (old: any) => {
-        if (!old) return;
-        return {
-          ...old,
-          pages: old.pages.map((page: any) => ({
-            ...page,
-            tweets: page.tweets.map((tweet: any) => {
-              if (tweet.id !== tweetId) return tweet;
-
-              const hasLiked = tweet.likes.some(
-                (like: any) => like.userId === userId
-              );
-
-              return {
-                ...tweet,
-                likes: hasLiked
-                  ? tweet.likes.filter((like: any) => like.userId !== userId)
-                  : [...tweet.likes, { userId }],
-                _count: {
-                  ...tweet._count,
-                  likes: hasLiked
-                    ? tweet._count.likes - 1
-                    : tweet._count.likes + 1,
-                },
-              };
-            }),
-          })),
-        };
-      });
+      if (!tweetId || !userId) return;
+      updateTweetCache(queryClient, tweetId, userId);
     },
 
     onError: () => {

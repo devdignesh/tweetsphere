@@ -1,4 +1,4 @@
-import { AuthOptions } from "next-auth";  
+import { AuthOptions } from "next-auth";
 import prisma from "@/lib/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GitHubProvider from "next-auth/providers/github";
@@ -35,7 +35,6 @@ export const authOptions: AuthOptions = {
   ],
   callbacks: {
     async session({ session }: any) {
-    
       const isExistingUser = await prisma.user.findUnique({
         where: { email: session.user.email },
       });

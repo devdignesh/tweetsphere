@@ -1,8 +1,7 @@
 "use client";
 import { useSession } from "next-auth/react";
-import React, { useCallback } from "react";
+import React from "react";
 import Sidebar from "../sidebar/sidebar";
-import { Toaster } from "../ui/toaster";
 import NextTopLoader from "nextjs-toploader";
 import Aside from "../aside/aside";
 import LoadingScreen from "../elements/loading-screen/loading-screen";
@@ -56,8 +55,6 @@ const Home = ({ children }: Props) => {
             />
 
             {children}
-
-            <Toaster />
           </main>
 
           <Aside />
